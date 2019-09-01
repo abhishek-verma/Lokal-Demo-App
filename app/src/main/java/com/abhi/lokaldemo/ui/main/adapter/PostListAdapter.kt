@@ -11,7 +11,6 @@ import com.abhi.lokaldemo.databinding.PostListItemBinding
 import com.abhi.lokaldemo.ui.main.callback.PostClickCallback
 
 
-
 class PostListAdapter(
     val projectPostClickCallback: PostClickCallback
 ) : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
@@ -51,19 +50,19 @@ class PostListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding : PostListItemBinding = DataBindingUtil
+        val binding: PostListItemBinding = DataBindingUtil
             .inflate(
                 LayoutInflater.from(parent.context), R.layout.post_list_item,
                 parent, false
             )
 
-        binding.setCallback(projectPostClickCallback)
+        binding.callback = projectPostClickCallback
 
         return PostViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.binding.setProject(postList!![position])
+        holder.binding.post = postList!![position]
         holder.binding.executePendingBindings()
     }
 

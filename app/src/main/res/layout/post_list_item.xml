@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="project" type="com.abhi.lokaldemo.api.model.PostResponse"/>
+        <variable name="post" type="com.abhi.lokaldemo.api.model.PostResponse"/>
         <variable name="callback" type="com.abhi.lokaldemo.ui.main.callback.PostClickCallback"/>
     </data>
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:onClick="@{() ->  callback.onClick(project)}"
+        android:onClick="@{() ->  callback.onClick(post)}"
         android:layout_marginStart="@dimen/item_horizontal_margin"
         android:layout_marginEnd="@dimen/item_horizontal_margin"
         app:cardUseCompatPadding="true">
@@ -30,21 +30,21 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="@dimen/project_text"
-                android:text="@{project.name}"/>
+                android:text="@{post.id}"/>
 
             <TextView
                 android:id="@+id/languages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/project_text"
-                android:text="@{String.format(@string/languages, project.language)}"/>
+                android:text="@{post.filename}"/>
 
             <TextView
                 android:id="@+id/project_watchers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/project_text"
-                android:text="@{String.format(@string/watchers, project.watchers)}"/>
+                android:text="@{post.post_url}"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
