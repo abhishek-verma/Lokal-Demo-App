@@ -14,7 +14,7 @@ class PostResponseRepository private constructor() {
     private val picSumService: PicSumService
 
     init {
-        //TODO this gitHubService instance will be injected using Dagger in part #2 ...
+        //TODO this service instance will be injected using Dagger in part #2 ...
         val retrofit = Retrofit.Builder()
             .baseUrl(PicSumService.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -23,7 +23,7 @@ class PostResponseRepository private constructor() {
         picSumService = retrofit.create(PicSumService::class.java)
     }
 
-    fun getPostResponseList(userId: String): LiveData<List<PostResponse>> {
+    fun getPostResponseList(): LiveData<List<PostResponse>> {
         val data = MutableLiveData<List<PostResponse>>()
 
         picSumService.getPosts().enqueue(object : Callback<List<PostResponse>> {
