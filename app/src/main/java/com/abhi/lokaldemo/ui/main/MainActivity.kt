@@ -1,8 +1,8 @@
-package com.abhi.lokaldemo
+package com.abhi.lokaldemo.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.abhi.lokaldemo.ui.main.MainFragment
+import com.abhi.lokaldemo.R
 
 class MainActivity : AppCompatActivity() {
 
