@@ -7,6 +7,6 @@ public class PostResponse {
     public String filename;
     public int id;
     public String author;
-    public String author_url;
+    public String authorUrl;
     public String postUrl;
 }

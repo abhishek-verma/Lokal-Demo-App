@@ -6,9 +6,6 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class MainActivityModule {
 
-    @ContributesAndroidInjector()
-    abstract MainActivity contributeMainActivity();
-
     @ContributesAndroidInjector
     abstract MainFragment contributeMainFragment();
 

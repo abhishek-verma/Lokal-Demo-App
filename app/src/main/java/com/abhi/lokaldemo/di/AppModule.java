@@ -15,10 +15,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public abstract class AppModule {
+public class AppModule {
 
-    @Binds
-    abstract Context provideContext(LokalApplication application);
+    @Provides
+    Context provideContext(LokalApplication application) {
+        return new LokalApplication();
+    }
 
     @Singleton
     @Provides
