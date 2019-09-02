@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.abhi.lokaldemo.LokalApplication;
 import com.abhi.lokaldemo.api.model.PostResponse;
 import com.abhi.lokaldemo.api.repo.PostResponseRepository;
 
@@ -18,7 +19,7 @@ public class PostListViewModel extends AndroidViewModel {
     private final LiveData<List<PostResponse>> postListObservable;
 
     @Inject
-    public PostListViewModel(@NonNull PostResponseRepository postResponseRepository, @NonNull Application application) {
+    public PostListViewModel(@NonNull PostResponseRepository postResponseRepository, @NonNull LokalApplication application) {
         super(application);
         postListObservable = postResponseRepository.getPostResponseList();
     }

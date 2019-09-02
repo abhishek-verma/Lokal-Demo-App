@@ -24,12 +24,14 @@ public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
     @Override
     void inject(DaggerApplication instance);
-
+    
     @Component.Builder
     interface Builder {
         @BindsInstance
-        Builder application(Application application);
+        Builder application(LokalApplication application);
 
         AppComponent build();
     }
+
+
 }

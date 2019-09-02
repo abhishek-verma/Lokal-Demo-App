@@ -4,7 +4,7 @@ import com.abhi.lokaldemo.di.AppComponent;
 import com.abhi.lokaldemo.di.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
+import dagger.android.support.DaggerApplication;
 
 public class LokalApplication extends DaggerApplication {
 

@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface PicSumService {
 
-    public final String BASE_URL = "https://picsum.photos/";
+    String BASE_URL = "https://picsum.photos/";
 
     @GET("list")
     Call<List<PostResponse>> getPosts();
