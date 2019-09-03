@@ -114,6 +114,9 @@ public class PostListViewModel extends AndroidViewModel {
                     post.downloadProgress = percent;
                     binding.invalidateAll();
 
+                    if(percent == 100)
+                        builder.setContentText("Download complete");
+
                     builder.setProgress(PROGRESS_MAX, percent, false);
                     notificationManager.notify(post.id, builder.build());
                     Log.d(LOG_TAG, "onProgressChange for postid: " + post.id + "and percent: " + percent);
@@ -126,12 +129,12 @@ public class PostListViewModel extends AndroidViewModel {
 
                     Toast
                             .makeText(getApplication(),
-                                    "Download Complete! ",
+                                    "Download Complete!",
                                     Toast.LENGTH_SHORT)
                             .show();
 
                     builder.setContentText("Download complete")
-                            .setProgress(0, 0, false);
+                            .setProgress(PROGRESS_MAX, PROGRESS_MAX, false);
                     notificationManager.notify(post.id, builder.build());
 
                     Log.d(LOG_TAG, "onComplete for postid: " + post.id + "saved to: " + path);
