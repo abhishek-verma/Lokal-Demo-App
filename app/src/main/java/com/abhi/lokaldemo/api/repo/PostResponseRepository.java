@@ -33,7 +33,8 @@ public class PostResponseRepository {
 
             @Override
             public void onResponse(Call<List<PostResponse>> call, Response<List<PostResponse>> response) {
-                data.setValue(response.body());
+                assert response.body() != null;
+                data.setValue(response.body().subList(0, 20));
             }
 
             @Override

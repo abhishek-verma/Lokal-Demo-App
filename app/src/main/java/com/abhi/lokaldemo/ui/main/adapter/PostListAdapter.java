@@ -1,7 +1,9 @@
 package com.abhi.lokaldemo.ui.main.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import com.abhi.lokaldemo.R;
 import com.abhi.lokaldemo.api.model.PostResponse;
 import com.abhi.lokaldemo.databinding.PostListItemBinding;
 import com.abhi.lokaldemo.ui.main.callback.PostClickCallback;
+import com.abhi.lokaldemo.ui.main.callback.PostClickWithBindingCallback;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,9 +26,9 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     List<? extends PostResponse> postList;
 
     @Nullable
-    private final PostClickCallback postClickCallback;
+    private final PostClickWithBindingCallback postClickCallback;
 
-    public PostListAdapter(@Nullable PostClickCallback postClickCallback) {
+    public PostListAdapter(@Nullable PostClickWithBindingCallback postClickCallback) {
         this.postClickCallback = postClickCallback;
     }
 
@@ -68,11 +71,16 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        PostListItemBinding binding = DataBindingUtil
+        final PostListItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.post_list_item,
                         parent, false);
 
-        binding.setCallback(postClickCallback);
+        binding.setCallback(new PostClickCallback() {
+            @Override
+            public void onClick(PostResponse post) {
+                postClickCallback.onClick(post, binding);
+            }
+        });
 
         return new PostViewHolder(binding);
     }
@@ -85,7 +93,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return postList.size();
     }
 
 

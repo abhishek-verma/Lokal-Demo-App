@@ -13,19 +13,10 @@
         android:background="@color/cardview_light_background"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test"/>
-
-        <TextView
-            android:id="@+id/loading_projects"
+        <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
-            android:text="@string/loading"
-            android:textAlignment="center"
             app:visibleGone="@{isLoading}"/>
 
         <LinearLayout
@@ -34,17 +25,6 @@
             android:background="@color/cardview_light_background"
             android:orientation="vertical"
             app:visibleGone="@{!isLoading}">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/project_header1"
-                android:text="@string/picsum"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:textAlignment="center"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/project_list"

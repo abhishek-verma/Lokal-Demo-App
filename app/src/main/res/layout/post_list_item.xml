@@ -1,51 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <variable name="post" type="com.abhi.lokaldemo.api.model.PostResponse"/>
-        <variable name="callback" type="com.abhi.lokaldemo.ui.main.callback.PostClickCallback"/>
+
+        <variable
+            name="post"
+            type="com.abhi.lokaldemo.api.model.PostResponse" />
+
+        <variable
+            name="callback"
+            type="com.abhi.lokaldemo.ui.main.callback.PostClickCallback" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:onClick="@{() ->  callback.onClick(post)}"
-        android:layout_marginStart="@dimen/item_horizontal_margin"
-        android:layout_marginEnd="@dimen/item_horizontal_margin"
-        app:cardUseCompatPadding="true">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_marginStart="@dimen/item_horizontal_margin"
-            android:layout_marginEnd="@dimen/item_horizontal_margin"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{post.post_url}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.0" />
+
 
             <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="@dimen/project_text"
-                android:text="@{post.id}"/>
-
-            <TextView
-                android:id="@+id/languages"
+                android:id="@+id/filename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:textColor="#fff"
+                android:shadowColor="#000"
+                android:text="@{post.filename}"
                 android:textSize="@dimen/project_text"
-                android:text="@{post.filename}"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/project_watchers"
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="@{post.downloadProgress}"
+                app:downloadProgressState="@{post.downloadState}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                style="?android:selectableItemBackgroundBorderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/project_text"
-                android:text="@{post.postUrl}"/>
-        </LinearLayout>
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="?android:selectableItemBackground"
+                android:onClick="@{() ->  callback.onClick(post)}"
+                android:src="@drawable/ic_file_download_light"
+                app:downloadButtonState="@{post.downloadState}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 </layout>

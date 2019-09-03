@@ -16,8 +16,10 @@ import androidx.lifecycle.ViewModelProviders;
 import com.abhi.lokaldemo.R;
 import com.abhi.lokaldemo.api.model.PostResponse;
 import com.abhi.lokaldemo.databinding.MainFragmentBinding;
+import com.abhi.lokaldemo.databinding.PostListItemBinding;
 import com.abhi.lokaldemo.ui.main.adapter.PostListAdapter;
 import com.abhi.lokaldemo.ui.main.callback.PostClickCallback;
+import com.abhi.lokaldemo.ui.main.callback.PostClickWithBindingCallback;
 import com.abhi.lokaldemo.viewmodel.main.PostListViewModel;
 
 import java.util.List;
@@ -39,7 +41,7 @@ public class MainFragment extends DaggerFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false);
 
-        postListAdapter = new PostListAdapter(postClickCallback);
+        postListAdapter = new PostListAdapter(viewModel.postClickCallback);
         binding.projectList.setAdapter(postListAdapter);
         binding.setIsLoading(true);
 
@@ -66,12 +68,5 @@ public class MainFragment extends DaggerFragment {
         });
     }
 
-    private final PostClickCallback postClickCallback = new PostClickCallback() {
-        @Override
-        public void onClick(PostResponse post) {
-            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((MainActivity) getActivity()).downloadImage(post);
-            }
-        }
-    };
+
 }

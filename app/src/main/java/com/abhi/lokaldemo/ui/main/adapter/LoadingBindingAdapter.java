@@ -4,7 +4,7 @@ import android.view.View;
 
 import androidx.databinding.BindingAdapter;
 
-public class CustomBindingAdapter {
+public class LoadingBindingAdapter {
 
     @BindingAdapter("visibleGone")
     public static void showHide(View view, boolean show) {
